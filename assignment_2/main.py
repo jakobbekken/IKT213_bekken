@@ -77,8 +77,14 @@ def smoothing(image):
     return cv2.GaussianBlur(image, (15, 15), cv2.BORDER_DEFAULT)
 
 
-def rotation(image):
-    return cv2.rotate(image, cv2.ROTATE_180)
+def rotation(image, rotation_angle):
+    
+    if rotation_angle == 90:
+        rotation = cv2.ROTATE_90_CLOCKWISE
+    elif rotation_angle == 180:
+        rotation = cv2.ROTATE_180
+        
+    return cv2.rotate(image, rotation)
 
 
 def main():
@@ -98,7 +104,7 @@ def main():
     save_img("hsv.png", hsv(img))
     save_img("hue_shifted.png", hue_shifted(img, empty_picture_array, 50))
     save_img("smoothing.png", smoothing(img))
-    save_img("rotation.png", rotation(img))
+    save_img("rotation.png", rotation(img, 180))
 
 
 if __name__ == "__main__":
